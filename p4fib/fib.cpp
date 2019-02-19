@@ -15,9 +15,10 @@ int main()
 { cin >> n >> k;
   f[0] = 0;
   f[1] = 1;
-  f[2] = (unsigned long long)k;
-  for(int i= 3; i <= n+1; ++i) f[i] = f[i-1] + f[i-2];
-  printf("%llu\n", f[n+1]);
+  f[2] = 1;
+  for(int i= 3; i <= n; ++i) 
+    f[i] = f[i-1] + f[i-2] * k;
+  printf("%llu\n", f[n]);
   return 0;
 }
 
