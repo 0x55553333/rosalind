@@ -4,25 +4,22 @@
 #include <cmath>
 using namespace std;
 
-double k, m, n, all;
+double k, m, n, a;
 double o;
 
 int main()
 {
   cin >> k >> m >> n;
-  all = k + m + n;
-  // case I: dominant + dominant
- o += k / all * (k-1)/all;
-  // case II: dominant + het
-  o += (k/all * m/all);
-  // case III: het + het
-  o += (m/all * (m-1)/all)*0.75;
-  // case IV: het + rec
-  o += (m/all * n/all)*0.5;
-  // case V: dominant + rec
-  o += (k/all * n/all);
-  // case VI: rec + rec
-  // nope
+  a = k + m + n;
+  o += k/a * (k-1)/(a-1); // all homozygous
+  o += k/a * m/(a-1); // hetero/homozygous
+  o += k/a * n/(a-1); // all heterozygous
+  o += n/a * k/(a-1); // all heterozygous
+  o += n/a * m/(a-1) * 0.5; // half heterozygous
+  o += m/a * k/(a-1); // hetero/homozygous
+  o += m/a * (m-1)/(a-1) * 0.75; // 3/4 heterozygous
+  o += m/a * n/(a-1) * 0.5; // half heterozygous
   cout << o << endl;
   return 0;
 }
+
